@@ -3,10 +3,18 @@ import Buku from './Buku'
 import axios from 'axios'
 
 class ListBuku extends Component {
+    formDihapus = id => {
+        this.props.formDihapus(id)
+    }
+
+    formDiedit = data => {
+        this.props.formDiedit(data)
+    }
+
     render() {
         const dataBuku = this.props.dataBuku
         return(
-            <div>
+            <div className='data'>
                 <table border={1}>
                     <thead>
                         <tr>
@@ -18,6 +26,7 @@ class ListBuku extends Component {
                             <th>ISBN</th>
                             <th>Tahun</th>
                             <th>Jumlah</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -26,6 +35,8 @@ class ListBuku extends Component {
                                 return <Buku 
                                     buku={buku}
                                     key={buku.id}
+                                    formDihapus={this.formDihapus}
+                                    formDiedit={this.formDiedit}
                                 />
                             })
                         }
